@@ -1,7 +1,7 @@
 /**
  * Servicio para generar el HTML y la vista previa de impresión
  */
-class PdfService {
+class HtmlService {
   /**
    * Genera el código HTML del folleto
    * @param {Object} state - Estado completo del folleto
@@ -326,4 +326,4 @@ class PdfService {
   }
 }
 
-export default PdfService;
+export default HtmlService;

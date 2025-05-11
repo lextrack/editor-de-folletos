@@ -2,7 +2,7 @@ import ColorManager from './ColorManager.js';
 import TextManager from './TextManager.js';
 import ModalManager from './ModalManager.js';
 import DOMUtils from '../utils/DOMUtils.js';
-import PdfService from '../services/PdfService.js';
+import HtmlService from '../services/HtmlService.js';
 import StorageService from '../services/StorageService.js';
 
 /**
@@ -16,7 +16,7 @@ class UIManager {
   constructor(model) {
     this.model = model;
     this.storageService = new StorageService();
-    this.pdfService = new PdfService();
+    this.htmlService = new HtmlService();
     
     this.modalManager = new ModalManager();
     this.colorManager = new ColorManager(model);
@@ -125,7 +125,7 @@ class UIManager {
    * Maneja el clic en el botón "Generar HTML"
    */
   handleGenerateCode() {
-    const htmlCode = this.pdfService.generateHtml(this.model.getState());
+    const htmlCode = this.htmlService.generateHtml(this.model.getState());
     this.modalManager.showCodeModal(htmlCode);
   }
 
@@ -133,8 +133,8 @@ class UIManager {
    * Maneja el clic en el botón "Vista de Impresión"
    */
   handlePrintPreview() {
-    const htmlCode = this.pdfService.generateHtml(this.model.getState());
-    this.pdfService.openPrintPreview(htmlCode);
+    const htmlCode = this.htmlService.generateHtml(this.model.getState());
+    this.htmlService.openPrintPreview(htmlCode);
   }
 
   /**
