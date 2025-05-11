@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor de Folletos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="icon" href="icon.ico" />
+    <link rel="stylesheet" href="css/about-modal.css">
+    <link rel="stylesheet" href="css/brochure-element.css">
+    <link rel="stylesheet" href="css/print-instructions.css">
+    <link rel="stylesheet" href="css/speed-dial.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container-fluid p-0">
+        <div class="row g-0">
+            <div class="col-auto editor-sidebar p-4">
+            <div class="custom-title-container text-center mb-4">
+                <h1 class="custom-title">
+                    <i class="bi bi-journal-richtext me-2"></i>Editor de Folletos
+                </h1>
+                <p class="custom-subtitle">Folletos imprimibles sin pagos ni registro</p>
+            </div>
+                
+                
+                <!-- Tabs de navegación -->
+                <ul class="nav nav-pills mb-4" id="editorTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="general-tab" data-bs-toggle="pill" data-bs-target="#general" type="button" role="tab" aria-controls="general" aria-selected="true">General</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="portada-tab" data-bs-toggle="pill" data-bs-target="#portada" type="button" role="tab" aria-controls="portada" aria-selected="false">Portada</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="texto-contraportada-tab" data-bs-toggle="pill" data-bs-target="#texto-contraportada" type="button" role="tab" aria-controls="texto-contraportada" aria-selected="false">Contraportada</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="texto2-tab" data-bs-toggle="pill" data-bs-target="#texto2" type="button" role="tab" aria-controls="texto2" aria-selected="false">Texto 2</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="texto3-tab" data-bs-toggle="pill" data-bs-target="#texto3" type="button" role="tab" aria-controls="texto3" aria-selected="false">Texto 3</button>
+                    </li>
+                </ul>
+                
+                <!-- Contenido de las pestañas -->
+                <div class="tab-content" id="editorTabsContent">
+                    <!-- Pestaña General -->
+                    <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="general-tab">
+                        <h2 class="section-title">Colores del Folleto</h2>
+                        
+                        <div class="color-input-group mb-3 d-flex align-items-center">
+                            <input type="color" class="form-control-color" id="primaryColor" value="#5d4037">
+                            <span>Color primario (títulos)</span>
+                        </div>
+                        
+                        <div class="color-input-group mb-3 d-flex align-items-center">
+                            <input type="color" class="form-control-color" id="secondaryColor" value="#8d6e63">
+                            <span>Color secundario (decoraciones)</span>
+                        </div>
+                        
+                        <div class="color-input-group mb-3 d-flex align-items-center">
+                            <input type="color" class="form-control-color" id="backgroundColor" value="#f9f5f0">
+                            <span>Color de fondo de página</span>
+                        </div>
+                        
+                        <div class="color-input-group mb-3 d-flex align-items-center">
+                            <input type="color" class="form-control-color" id="allPagesColor" value="#ffffff">
+                            <span>Color de todas las páginas</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Pestaña Portada -->
+                    <div class="tab-pane fade" id="portada" role="tabpanel" aria-labelledby="portada-tab">
+                        <h2 class="section-title">Configuración de Portada</h2>
+                        
+                        <div class="color-input-group mb-3 d-flex align-items-center">
+                            <input type="color" class="form-control-color" id="coverColor" value="#ccbfad">
+                            <span>Color de fondo de portada</span>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="coverTitle" class="form-label">Título principal:</label>
+                            <input type="text" class="form-control" id="coverTitle" value="Obras notables">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="authorName" class="form-label">Nombre del autor:</label>
+                            <input type="text" class="form-control" id="authorName" value="Gabriela Mistral">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="coverNote" class="form-label">Nota de portada:</label>
+                            <input type="text" class="form-control" id="coverNote" value="Premio Nobel de Literatura 1945">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="decorationSymbol" class="form-label">Símbolo de decoración:</label>
+                            <input type="text" class="form-control" id="decorationSymbol" value="❊ ❊ ❊">
+                        </div>
+                    </div>
+                    
+                    <!-- Pestaña Contraportada -->
+                    <div class="tab-pane fade" id="texto-contraportada" role="tabpanel" aria-labelledby="texto-contraportada-tab">
+                        <h2 class="section-title">Contraportada (Texto 1)</h2>
+                        
+                        <div class="color-input-group mb-3 d-flex align-items-center page-color-control">
+                            <input type="color" class="form-control-color" id="text1Color" value="#ffffff">
+                            <span>Color de fondo de contraportada</span>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="text1Title" class="form-label">Título:</label>
+                            <input type="text" class="form-control" id="text1Title" value="Balada">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="text1TitleSize" class="form-label">Tamaño del título:</label>
+                            <div class="d-flex align-items-center">
+                                <input type="range" class="form-range" id="text1TitleSize" min="20" max="36" value="30">
+                                <span class="size-value" id="text1TitleSizeValue">30px</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="text1Content" class="form-label">Contenido:</label>
+                            <textarea class="form-control" id="text1Content" rows="4">Prueba de texto
+número 1</textarea>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="text1FontSize" class="form-label">Tamaño de contenido:</label>
+                            <div class="d-flex align-items-center">
+                                <input type="range" class="form-range" id="text1FontSize" min="10" max="20" value="14">
+                                <span class="size-value" id="text1FontSizeValue">14px</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pestaña Texto 2 -->
+                    <div class="tab-pane fade" id="texto2" role="tabpanel" aria-labelledby="texto2-tab">
+                        <h2 class="section-title">Texto 2 (Interior izquierdo)</h2>
+                        
+                        <div class="color-input-group mb-3 d-flex align-items-center page-color-control">
+                            <input type="color" class="form-control-color" id="text2Color" value="#ffffff">
+                            <span>Color de fondo de página</span>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="text2Title" class="form-label">Título:</label>
+                            <input type="text" class="form-control" id="text2Title" value="Piececitos">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="text2TitleSize" class="form-label">Tamaño del título:</label>
+                            <div class="d-flex align-items-center">
+                                <input type="range" class="form-range" id="text2TitleSize" min="20" max="36" value="30">
+                                <span class="size-value" id="text2TitleSizeValue">30px</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="text2Content" class="form-label">Contenido:</label>
+                            <textarea class="form-control" id="text2Content" rows="4">Prueba de texto
+número 2</textarea>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="text2FontSize" class="form-label">Tamaño de contenido:</label>
+                            <div class="d-flex align-items-center">
+                                <input type="range" class="form-range" id="text2FontSize" min="10" max="20" value="14">
+                                <span class="size-value" id="text2FontSizeValue">14px</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pestaña Texto 3 -->
+                    <div class="tab-pane fade" id="texto3" role="tabpanel" aria-labelledby="texto3-tab">
+                        <h2 class="section-title">Texto 3 (Interior derecho)</h2>
+                        
+                        <div class="color-input-group mb-3 d-flex align-items-center page-color-control">
+                            <input type="color" class="form-control-color" id="text3Color" value="#ffffff">
+                            <span>Color de fondo de página</span>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="text3Title" class="form-label">Título:</label>
+                            <input type="text" class="form-control" id="text3Title" value="El Placer de Servir">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="text3TitleSize" class="form-label">Tamaño del título:</label>
+                            <div class="d-flex align-items-center">
+                                <input type="range" class="form-range" id="text3TitleSize" min="20" max="36" value="30">
+                                <span class="size-value" id="text3TitleSizeValue">30px</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="text3Content" class="form-label">Contenido:</label>
+                            <textarea class="form-control" id="text3Content" rows="4">Prueba de texto
+número 3</textarea>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="text3FontSize" class="form-label">Tamaño de contenido:</label>
+                            <div class="d-flex align-items-center">
+                                <input type="range" class="form-range" id="text3FontSize" min="10" max="20" value="14">
+                                <span class="size-value" id="text3FontSizeValue">14px</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Área de Contenido Principal -->
+            <div class="col editor-content">
+                <div class="preview-container">
+                    <!-- Página 1: Contiene portada (derecha) y un texto (izquierda) -->
+                    <div class="page">
+                        <!-- Mitad izquierda (quedará como última página al doblar) - Contraportada -->
+                        <div class="half-page left page-1-left">
+                            <div class="border-frame"></div> 
+                            <div class="text-container">
+                                <div class="text">
+                                    <div class="text-title" id="preview-text1-title">Balada</div>
+                                    <svg class="text-decoration" viewBox="0 0 50 10">
+                                        <line x1="0" y1="5" x2="50" y2="5" stroke="#8d6e63" stroke-width="1" stroke-dasharray="1,3"/>
+                                        <circle cx="25" cy="5" r="3" fill="#8d6e63"/>
+                                    </svg>
+                                    <div class="text-content balada" id="preview-text1-content">Prueba de texto
+número 1</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Mitad derecha: Portada -->
+                        <div class="half-page right cover">
+                            <div class="border-frame"></div>
+                            
+                            <div class="decoration" id="preview-decoration-symbol">❊ ❊ ❊</div>
+                            <h1 id="preview-cover-title">Obras notables</h1>
+                            <svg class="divider" viewBox="0 0 150 20">
+                                <line x1="0" y1="10" x2="150" y2="10" stroke="#8d6e63" stroke-width="1" stroke-dasharray="1,3"/>
+                                <path d="M75,5 L80,10 L75,15 L70,10 Z" fill="#8d6e63"/>
+                                <path d="M50,7 C55,5 60,5 65,7 C70,9 75,9 80,7 C85,5 90,5 95,7" fill="none" stroke="#8d6e63" stroke-width="1"/>
+                                <path d="M50,13 C55,15 60,15 65,13 C70,11 75,11 80,13 C85,15 90,15 95,13" fill="none" stroke="#8d6e63" stroke-width="1"/>
+                            </svg>
+                            <div class="author" id="preview-author-name">Gabriela Mistral</div>
+                            <svg class="divider" viewBox="0 0 150 20">
+                                <line x1="0" y1="10" x2="150" y2="10" stroke="#8d6e63" stroke-width="1" stroke-dasharray="1,3"/>
+                                <path d="M75,5 L80,10 L75,15 L70,10 Z" fill="#8d6e63"/>
+                                <path d="M50,7 C55,5 60,5 65,7 C70,9 75,9 80,7 C85,5 90,5 95,7" fill="none" stroke="#8d6e63" stroke-width="1"/>
+                                <path d="M50,13 C55,15 60,15 65,13 C70,11 75,11 80,13 C85,15 90,15 95,13" fill="none" stroke="#8d6e63" stroke-width="1"/>
+                            </svg>
+                            <div class="decoration" id="preview-decoration-symbol-2">❊ ❊ ❊</div>
+                            <div class="note" id="preview-cover-note">Premio Nobel de Literatura 1945</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Página 2: texto 1 (izquierda) y texto 2 (derecha) - Se rotarán al imprimir -->
+                    <div class="page">   
+                        <!-- Mitad izquierda - Interior izquierdo -->
+                        <div class="half-page left page-2-left">
+                            <div class="border-frame"></div>
+                            
+                            <div class="text-container interior-page">
+                                <div class="text">
+                                    <div class="text-title" id="preview-text2-title">Piececitos</div>
+                                    <svg class="text-decoration" viewBox="0 0 50 10">
+                                        <line x1="0" y1="5" x2="50" y2="5" stroke="#8d6e63" stroke-width="1" stroke-dasharray="1,3"/>
+                                        <circle cx="25" cy="5" r="3" fill="#8d6e63"/>
+                                    </svg>
+                                    <div class="text-content" id="preview-text2-content">Prueba de texto
+número 2</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Mitad derecha - Interior derecho -->
+                        <div class="half-page right page-2-right">
+                            <div class="border-frame"></div>
+                            
+                            <div class="text-container interior-page">
+                                <div class="text">
+                                    <div class="text-title" id="preview-text3-title">El Placer de Servir</div>
+                                    <svg class="text-decoration" viewBox="0 0 50 10">
+                                        <line x1="0" y1="5" x2="50" y2="5" stroke="#8d6e63" stroke-width="1" stroke-dasharray="1,3"/>
+                                        <circle cx="25" cy="5" r="3" fill="#8d6e63"/>
+                                    </svg>
+                                    <div class="text-content placer" id="preview-text3-content">Prueba de texto
+número 3</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Instrucciones de impresión-->
+                <div class="card mt-4 mb-5 print-instructions">
+                    <div class="card-body">
+                        <h5 class="card-title d-flex align-items-center gap-2">
+                            <i class="bi bi-printer-fill text-primary"></i>
+                            Instrucciones para Imprimir Correctamente
+                        </h5>
+                        
+                        <div class="alert alert-info d-flex align-items-center mt-3">
+                            <i class="bi bi-info-circle-fill me-2 fs-4"></i>
+                            <div>
+                                Este folleto está optimizado para impresión a doble cara. Sigue estos pasos para obtener los mejores resultados.
+                            </div>
+                        </div>
+                        
+                        <div class="row mt-4">
+                            <div class="col-md-6">
+                                <div class="instruction-step mb-4">
+                                    <div class="step-number">1</div>
+                                    <h6 class="step-title">Pasos para Configurar la Impresión</h6>
+                                    <ul class="step-details">
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i> Hoja tipo carta (Letter)</li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i> Orientación: Horizontal (Landscape)</li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i> Márgenes: Ninguno</li>
+                                        <li><i class="bi bi-printer text-primary me-2"></i> Impresión a doble cara: Activada</li>
+                                        <li><i class="bi bi-image text-primary me-2"></i> Gráficos de fondo activados</li>
+                                        <li><i class="bi bi-zoom-in text-primary me-2"></i> Escala: 100% (predeterminado)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="instruction-tip p-3 rounded">
+                                    <div class="d-flex align-items-start gap-2">
+                                        <i class="bi bi-lightbulb-fill text-warning fs-4"></i>
+                                        <div>
+                                            <h6 class="mb-2">Consejo Importante</h6>
+                                            <p class="mb-0">
+                                                En la vista previa de impresión el contenido puede aparecer invertido, pero al imprimir y doblar la hoja por la mitad, todas las páginas quedarán en la orientación correcta.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botones de acción flotantes con speed dial -->
+    <div class="speed-dial">
+        <!-- Botón principal -->
+        <div class="speed-dial-button speed-dial-main" id="speedDialMain">
+            <i class="bi bi-plus fs-4"></i>
+        </div>
+        
+        <!-- Menú de botones -->
+        <div class="speed-dial-menu" id="speedDialMenu">
+            <div class="speed-dial-button btn-info" id="showInfoBtn">
+                <i class="bi bi-info"></i>
+                <span class="speed-dial-tooltip">Información</span>
+            </div>
+            <div class="speed-dial-button btn-primary" id="generateCode">
+                <i class="bi bi-code-slash"></i>
+                <span class="speed-dial-tooltip">Generar HTML</span>
+            </div>
+            <div class="speed-dial-button btn-success" id="printPreview">
+                <i class="bi bi-printer"></i>
+                <span class="speed-dial-tooltip">Vista de Impresión</span>
+            </div>
+            <div class="speed-dial-button btn-secondary" id="resetEditor">
+                <i class="bi bi-arrow-counterclockwise"></i>
+                <span class="speed-dial-tooltip">Reiniciar</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal para mostrar el código generado -->
+    <div class="modal fade" id="codeModal" tabindex="-1" aria-labelledby="codeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="codeModalLabel">Código HTML del Folleto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Antes o después de imprimir puedes copiar y guardar en un archivo de texto este código HTML.
+                        Es el código del folleto que estás creado ahora mismo.</p>
+                    <div class="position-relative">
+                        <button class="btn btn-sm btn-primary top-0 end-0 m-2" id="copyCode">
+                            <i class="bi bi-clipboard"></i> Copiar
+                        </button>
+                        <pre id="generatedCode" class="bg-light p-3 rounded" style="max-height: 400px; overflow-y: auto;"></pre>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal de información -->
+    <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header info-modal-header">
+                    <h5 class="modal-title" id="infoModalLabel">
+                        <i class="bi bi-info-circle me-2"></i>Acerca del Editor de Folletos
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body info-modal-body">
+                    <div class="developer-info">
+                        <h5 class="mb-0">Autor inicial: Lextrack</h5>
+                    </div>
+                    
+                    <div class="info-section">
+                        <h5>Sobre el proyecto</h5>
+                        <p>El Editor de Folletos es una herramienta básica, gratuita y de código abierto para crear folletos con un diseño profesional. Permite personalizar colores, fuentes y contenido sin necesidad de habilidades de diseño.</p>
+                    </div>
+                    
+                    <div class="info-section">
+                        <h5>Características</h5>
+                        <ul>
+                            <li>Genera folletos imprimibles en formato díptico</li>
+                            <li>Personalización completa de colores, textos y estilos</li>
+                            <li>Vista previa en tiempo real</li>
+                            <li>Exportación a HTML para fácil impresión (aunque puede ser impreso directamente desde el botón de impresión)</li>
+                            <li>No requiere registro ni instalación</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-section mb-0">
+                        <h5>Versión</h5>
+                        <p class="mb-0">v1.0.0</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <a href="https://github.com/lextrack/editor-de-folletos" target="_blank" class="btn btn-primary">Ver Código Fuente</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
