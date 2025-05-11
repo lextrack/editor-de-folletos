@@ -8,8 +8,41 @@ class HtmlService {
    * @returns {string} - Código HTML generado
    */
   generateHtml(state) {
-    const { colors, cover, sections } = state;
+    const { colors, cover, sections, shapes } = state;
     const { text1, text2, text3 } = sections;
+    
+    const generateShapesHTML = (pageShapes) => {
+      if (!pageShapes || !pageShapes.length) return '';
+      
+      let shapesHTML = '<div class="shapes-container">';
+      
+      pageShapes.forEach(shape => {
+        const { type, x, y, width, height, color, opacity, rotation } = shape;
+        
+        let shapeStyle = `position: absolute; left: ${x}px; top: ${y}px; `;
+        shapeStyle += `opacity: ${opacity}; transform: rotate(${rotation}deg); `;
+        
+        if (type === 'rectangle') {
+          shapeStyle += `width: ${width}px; height: ${height}px; background-color: ${color};`;
+          shapesHTML += `<div style="${shapeStyle}"></div>`;
+        } else if (type === 'circle') {
+          shapeStyle += `width: ${width}px; height: ${height}px; border-radius: 50%; background-color: ${color};`;
+          shapesHTML += `<div style="${shapeStyle}"></div>`;
+        } else if (type === 'triangle') {
+          shapeStyle += `width: 0; height: 0; background-color: transparent; `;
+          shapeStyle += `border-left: ${width / 2}px solid transparent; `;
+          shapeStyle += `border-right: ${width / 2}px solid transparent; `;
+          shapeStyle += `border-bottom: ${height}px solid ${color};`;
+          shapesHTML += `<div style="${shapeStyle}"></div>`;
+        } else if (type === 'line') {
+          shapeStyle += `width: ${width}px; height: ${height}px; background-color: ${color};`;
+          shapesHTML += `<div style="${shapeStyle}"></div>`;
+        }
+      });
+      
+      shapesHTML += '</div>';
+      return shapesHTML;
+    };
     
     return `<!DOCTYPE html>
 <html lang="es">
@@ -209,6 +242,15 @@ class HtmlService {
         margin: 5px auto 15px;
         opacity: 0.6;
     }
+    
+    .shapes-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
 
     @media print {
         body {
@@ -245,7 +287,8 @@ class HtmlService {
 <body>
     <div class="page">
         <div class="half-page left page-1-left">
-            <div class="border-frame"></div> 
+            <div class="border-frame"></div>
+            ${generateShapesHTML(shapes.text1)}
             <div class="text-container">
                 <div class="text">
                     <div class="text-title">${text1.title}</div>
@@ -260,6 +303,7 @@ class HtmlService {
 
         <div class="half-page right cover">
             <div class="border-frame"></div>
+            ${generateShapesHTML(shapes.cover)}
             <div class="decoration">${cover.decoration}</div>
             <h1>${cover.title}</h1>
             <svg class="divider" viewBox="0 0 150 20">
@@ -283,6 +327,7 @@ class HtmlService {
     <div class="page">   
         <div class="half-page left page-2-left">
             <div class="border-frame"></div>
+            ${generateShapesHTML(shapes.text2)}
             <div class="text-container interior-page">
                 <div class="text">
                     <div class="text-title">${text2.title}</div>
@@ -297,6 +342,7 @@ class HtmlService {
 
         <div class="half-page right page-2-right">
             <div class="border-frame"></div>
+            ${generateShapesHTML(shapes.text3)}
             <div class="text-container interior-page">
                 <div class="text">
                     <div class="text-title">${text3.title}</div>

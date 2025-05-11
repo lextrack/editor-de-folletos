@@ -70,7 +70,6 @@ class TextManager {
       }
     });
     
-    // Eventos para las secciones de texto
     ['text1', 'text2', 'text3'].forEach(section => {
       const elements = this.sectionElements[section];
       
