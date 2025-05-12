@@ -58,27 +58,6 @@ Para obtener los mejores resultados al imprimir:
 - **LocalStorage API**: Guardado automático del progreso
 - **Arquitectura MVC**: Organización modular del código
 
-## 📐 Arquitectura del Software
-
-El proyecto está estructurado siguiendo una arquitectura Modelo-Vista-Controlador (MVC) modernizada:
-
-```
-js/
-├── app.js                    # Punto de entrada principal
-├── services/
-│   ├── StorageService.js     # Gestión del almacenamiento local
-│   └── PdfService.js         # Generación de HTML y vista previa
-├── models/
-│   └── BrochureModel.js      # Modelo de datos del folleto
-├── ui/
-│   ├── UIManager.js          # Gestión central de la UI
-│   ├── ColorManager.js       # Gestión de colores
-│   ├── TextManager.js        # Gestión de textos
-│   └── ModalManager.js       # Gestión de modales
-└── utils/
-    └── DOMUtils.js           # Utilidades para el DOM
-```
-
 ## 📄 Licencia
 
 Este proyecto está licenciado bajo la [Licencia MIT](LICENSE) - consulta el archivo LICENSE para más detalles.
