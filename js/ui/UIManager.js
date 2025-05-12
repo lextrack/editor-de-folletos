@@ -1,6 +1,7 @@
 import ColorManager from './ColorManager.js';
 import TextManager from './TextManager.js';
 import ModalManager from './ModalManager.js';
+import DecorationManager from './DecorationManager.js';
 import DOMUtils from '../utils/DOMUtils.js';
 import HtmlService from '../services/HtmlService.js';
 import StorageService from '../services/StorageService.js';
@@ -21,6 +22,7 @@ class UIManager {
     this.modalManager = new ModalManager();
     this.colorManager = new ColorManager(model);
     this.textManager = new TextManager(model);
+    this.decorationManager = new DecorationManager(model);
     
     this.bindEvents();
     this.initAutoSave();
@@ -63,7 +65,6 @@ class UIManager {
       buttons.showInfo.addEventListener('click', () => this.handleShowInfo());
     }
     
-    // Cerrar menú speed dial al hacer clic fuera
     const speedDialMenu = document.getElementById('speedDialMenu');
     document.addEventListener('click', (event) => {
       if (speedDialMenu && 
@@ -119,6 +120,7 @@ class UIManager {
   updateAllUI() {
     this.colorManager.updateUIFromModel();
     this.textManager.updateUIFromModel();
+    this.decorationManager.updateUIFromModel();
   }
 
   /**

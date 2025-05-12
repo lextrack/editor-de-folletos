@@ -41,6 +41,13 @@ class BrochureModel {
           fontSize: 14,
           titleSize: 30
         }
+      },
+      // Nuevas decoraciones añadidas
+      decorations: {
+        cover: 'divider-line',
+        text1: 'decoration-line',
+        text2: 'decoration-line',
+        text3: 'decoration-line'
       }
     };
   }
@@ -103,6 +110,18 @@ class BrochureModel {
   }
 
   /**
+   * Actualiza el tipo de decoración de una sección
+   * @param {string} section - Sección a actualizar (cover, text1, text2, text3)
+   * @param {string} type - Tipo de decoración
+   */
+  updateDecoration(section, type) {
+    if (!this.state.decorations) {
+      this.state.decorations = {};
+    }
+    this.state.decorations[section] = type;
+  }
+
+  /**
    * Carga datos guardados en el modelo
    * @param {Object} savedData - Datos guardados a cargar
    */
@@ -110,6 +129,7 @@ class BrochureModel {
     if (savedData.colors) this.state.colors = {...this.state.colors, ...savedData.colors};
     if (savedData.cover) this.state.cover = {...this.state.cover, ...savedData.cover};
     if (savedData.sections) this.state.sections = {...this.state.sections, ...savedData.sections};
+    if (savedData.decorations) this.state.decorations = {...this.state.decorations, ...savedData.decorations};
   }
   
   /**

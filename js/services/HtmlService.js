@@ -8,8 +8,79 @@ class HtmlService {
    * @returns {string} - Código HTML generado
    */
   generateHtml(state) {
-    const { colors, cover, sections } = state;
+    const { colors, cover, sections, decorations } = state;
     const { text1, text2, text3 } = sections;
+    
+    const getCoverDivider = (type) => {
+      switch(type) {
+        case 'divider-none':
+          return '';
+        case 'divider-dots':
+          return `
+            <svg class="divider" viewBox="0 0 150 20">
+              <line x1="0" y1="10" x2="150" y2="10" stroke="${colors.secondary}" stroke-width="1" stroke-dasharray="3,3"/>
+              <circle cx="25" cy="10" r="3" fill="${colors.secondary}"/>
+              <circle cx="75" cy="10" r="3" fill="${colors.secondary}"/>
+              <circle cx="125" cy="10" r="3" fill="${colors.secondary}"/>
+            </svg>`;
+        case 'divider-wave':
+          return `
+            <svg class="divider" viewBox="0 0 150 20">
+              <path d="M0,10 C25,0 50,20 75,10 C100,0 125,20 150,10" fill="none" stroke="${colors.secondary}" stroke-width="1"/>
+            </svg>`;
+        case 'divider-floral':
+          return `
+            <svg class="divider" viewBox="0 0 150 20">
+              <line x1="0" y1="10" x2="150" y2="10" stroke="${colors.secondary}" stroke-width="1"/>
+              <path d="M70,10 C70,5 75,0 80,0 C85,0 90,5 90,10 C90,15 85,20 80,20 C75,20 70,15 70,10" fill="${colors.secondary}" opacity="0.6"/>
+              <path d="M50,10 C50,7 53,4 56,4 C59,4 62,7 62,10 C62,13 59,16 56,16 C53,16 50,13 50,10" fill="${colors.secondary}" opacity="0.4"/>
+              <path d="M90,10 C90,7 93,4 96,4 C99,4 102,7 102,10 C102,13 99,16 96,16 C93,16 90,13 90,10" fill="${colors.secondary}" opacity="0.4"/>
+            </svg>`;
+        default:
+          return `
+            <svg class="divider" viewBox="0 0 150 20">
+              <line x1="0" y1="10" x2="150" y2="10" stroke="${colors.secondary}" stroke-width="1" stroke-dasharray="1,3"/>
+              <path d="M75,5 L80,10 L75,15 L70,10 Z" fill="${colors.secondary}"/>
+              <path d="M50,7 C55,5 60,5 65,7 C70,9 75,9 80,7 C85,5 90,5 95,7" fill="none" stroke="${colors.secondary}" stroke-width="1"/>
+              <path d="M50,13 C55,15 60,15 65,13 C70,11 75,11 80,13 C85,15 90,15 95,13" fill="none" stroke="${colors.secondary}" stroke-width="1"/>
+            </svg>`;
+      }
+    };
+
+    const getTextDecoration = (type) => {
+      switch(type) {
+        case 'decoration-none':
+          return '';
+        case 'decoration-dots':
+          return `
+            <svg class="text-decoration" viewBox="0 0 50 10">
+              <line x1="0" y1="5" x2="50" y2="5" stroke="${colors.secondary}" stroke-width="1" stroke-dasharray="2,2"/>
+              <circle cx="10" cy="5" r="2" fill="${colors.secondary}"/>
+              <circle cx="25" cy="5" r="2" fill="${colors.secondary}"/>
+              <circle cx="40" cy="5" r="2" fill="${colors.secondary}"/>
+            </svg>`;
+        case 'decoration-star':
+          return `
+            <svg class="text-decoration" viewBox="0 0 50 10">
+              <line x1="0" y1="5" x2="50" y2="5" stroke="${colors.secondary}" stroke-width="1" stroke-dasharray="2,2"/>
+              <path d="M25,0 L27,3 L30,4 L27,5 L25,8 L23,5 L20,4 L23,3 Z" fill="${colors.secondary}"/>
+            </svg>`;
+        case 'decoration-floral':
+          return `
+            <svg class="text-decoration" viewBox="0 0 50 10">
+              <line x1="0" y1="5" x2="50" y2="5" stroke="${colors.secondary}" stroke-width="1"/>
+              <path d="M20,5 C20,3 22,1 25,1 C28,1 30,3 30,5 C30,7 28,9 25,9 C22,9 20,7 20,5" fill="${colors.secondary}" opacity="0.6"/>
+              <path d="M15,5 C15,4 16,3 17,3 C18,3 19,4 19,5 C19,6 18,7 17,7 C16,7 15,6 15,5" fill="${colors.secondary}" opacity="0.4"/>
+              <path d="M31,5 C31,4 32,3 33,3 C34,3 35,4 35,5 C35,6 34,7 33,7 C32,7 31,6 31,5" fill="${colors.secondary}" opacity="0.4"/>
+            </svg>`;
+        default:
+          return `
+            <svg class="text-decoration" viewBox="0 0 50 10">
+              <line x1="0" y1="5" x2="50" y2="5" stroke="${colors.secondary}" stroke-width="1" stroke-dasharray="1,3"/>
+              <circle cx="25" cy="5" r="3" fill="${colors.secondary}"/>
+            </svg>`;
+      }
+    };
     
     return `<!DOCTYPE html>
 <html lang="es">
@@ -147,6 +218,7 @@ class HtmlService {
         white-space: pre-line;
         position: relative;
         z-index: 10;
+        color: var(--secondary-color);
     }
 
     .text-content.balada {
@@ -249,10 +321,7 @@ class HtmlService {
             <div class="text-container">
                 <div class="text">
                     <div class="text-title">${text1.title}</div>
-                    <svg class="text-decoration" viewBox="0 0 50 10">
-                        <line x1="0" y1="5" x2="50" y2="5" stroke="${colors.secondary}" stroke-width="1" stroke-dasharray="1,3"/>
-                        <circle cx="25" cy="5" r="3" fill="${colors.secondary}"/>
-                    </svg>
+                    ${getTextDecoration(decorations?.text1 || 'decoration-line')}
                     <div class="text-content balada">${text1.content}</div>
                 </div>
             </div>
@@ -262,19 +331,9 @@ class HtmlService {
             <div class="border-frame"></div>
             <div class="decoration">${cover.decoration}</div>
             <h1>${cover.title}</h1>
-            <svg class="divider" viewBox="0 0 150 20">
-                <line x1="0" y1="10" x2="150" y2="10" stroke="${colors.secondary}" stroke-width="1" stroke-dasharray="1,3"/>
-                <path d="M75,5 L80,10 L75,15 L70,10 Z" fill="${colors.secondary}"/>
-                <path d="M50,7 C55,5 60,5 65,7 C70,9 75,9 80,7 C85,5 90,5 95,7" fill="none" stroke="${colors.secondary}" stroke-width="1"/>
-                <path d="M50,13 C55,15 60,15 65,13 C70,11 75,11 80,13 C85,15 90,15 95,13" fill="none" stroke="${colors.secondary}" stroke-width="1"/>
-            </svg>
+            ${getCoverDivider(decorations?.cover || 'divider-line')}
             <div class="author">${cover.author}</div>
-            <svg class="divider" viewBox="0 0 150 20">
-                <line x1="0" y1="10" x2="150" y2="10" stroke="${colors.secondary}" stroke-width="1" stroke-dasharray="1,3"/>
-                <path d="M75,5 L80,10 L75,15 L70,10 Z" fill="${colors.secondary}"/>
-                <path d="M50,7 C55,5 60,5 65,7 C70,9 75,9 80,7 C85,5 90,5 95,7" fill="none" stroke="${colors.secondary}" stroke-width="1"/>
-                <path d="M50,13 C55,15 60,15 65,13 C70,11 75,11 80,13 C85,15 90,15 95,13" fill="none" stroke="${colors.secondary}" stroke-width="1"/>
-            </svg>
+            ${getCoverDivider(decorations?.cover || 'divider-line')}
             <div class="decoration">${cover.decoration}</div>
             <div class="note">${cover.note}</div>
         </div>
@@ -286,10 +345,7 @@ class HtmlService {
             <div class="text-container interior-page">
                 <div class="text">
                     <div class="text-title">${text2.title}</div>
-                    <svg class="text-decoration" viewBox="0 0 50 10">
-                        <line x1="0" y1="5" x2="50" y2="5" stroke="${colors.secondary}" stroke-width="1" stroke-dasharray="1,3"/>
-                        <circle cx="25" cy="5" r="3" fill="${colors.secondary}"/>
-                    </svg>
+                    ${getTextDecoration(decorations?.text2 || 'decoration-line')}
                     <div class="text-content" id="text2-content">${text2.content}</div>
                 </div>
             </div>
@@ -300,10 +356,7 @@ class HtmlService {
             <div class="text-container interior-page">
                 <div class="text">
                     <div class="text-title">${text3.title}</div>
-                    <svg class="text-decoration" viewBox="0 0 50 10">
-                        <line x1="0" y1="5" x2="50" y2="5" stroke="${colors.secondary}" stroke-width="1" stroke-dasharray="1,3"/>
-                        <circle cx="25" cy="5" r="3" fill="${colors.secondary}"/>
-                    </svg>
+                    ${getTextDecoration(decorations?.text3 || 'decoration-line')}
                     <div class="text-content placer">${text3.content}</div>
                 </div>
             </div>

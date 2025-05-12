@@ -62,20 +62,16 @@ class ColorManager {
     this.updateColorVariableInDOM(key, value);
     
     if (key === 'primary') {
-      // Actualizar títulos y otros elementos con color primario
       document.querySelectorAll('.text-title, h1').forEach(element => {
         element.style.color = value;
       });
     } else if (key === 'secondary') {
-      // Actualizar SVGs y elementos decorativos
       this.updateSvgColors(value);
       
-      // Actualizar textos de contenido con color secundario
       document.querySelectorAll('.text-content').forEach(element => {
         element.style.color = value;
       });
       
-      // Actualizar otros elementos que usan el color secundario
       document.querySelectorAll('.author, .note, .decoration').forEach(element => {
         element.style.color = value;
       });
