@@ -7,6 +7,9 @@ Una herramienta web gratuita y de código abierto para crear folletos de manera 
 <div align="center">
   <img src="captures/1.png" width="500"/>
   <img src="captures/2.png" width="500"/>
+  <img src="captures/3.jpg" width="500"/>
+  <img src="captures/4.jpg" width="500"/>
+  <img src="captures/5.jpg" width="500"/>
 </div>
 
 ## 🌟 Características
