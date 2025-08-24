@@ -50,14 +50,6 @@ Para obtener los mejores resultados al imprimir:
 - Configura los márgenes en "Ninguno"
 - Activa "Imprimir gráficos de fondo"
 
-## 🛠️ Tecnologías Utilizadas
-
-- **HTML5/CSS3**: Estructura y estilos responsive
-- **JavaScript (ES6+)**: Lógica de la aplicación con módulos ES6
-- **Bootstrap 5**: Framework de componentes para la interfaz
-- **LocalStorage API**: Guardado automático del progreso
-- **Arquitectura MVC**: Organización modular del código
-
 ## 📄 Licencia
 
 Este proyecto está licenciado bajo la [Licencia MIT](LICENSE) - consulta el archivo LICENSE para más detalles.
