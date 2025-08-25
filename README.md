@@ -21,7 +21,6 @@ Una herramienta web gratuita y de código abierto para crear folletos de manera 
 - ✅ **Sin Registro ni pagos**: No requiere crear cuentas ni proporcionar datos personales
 - ✅ **Sin Instalación**: Funciona directamente en tu navegador
 - ✅ **Completamente Gratuito**: Sin costos ocultos ni límites de uso
-- ✅ **Código Abierto**: Revisa, modifica y mejora el código libremente
 
 ## 📋 Instrucciones de Uso
 
