@@ -1,6 +1,6 @@
 # Editor de Folletos
 
-Una herramienta web gratuita y de código abierto para crear folletos de manera simple y rápida. Diseña y personaliza folletos tipo díptico para imprimir, sin necesidad de registrarte ni pagar.
+Una herramienta web gratuita y de código abierto para crear folletos de manera simple y rápida. Diseña y personaliza folletos tipo díptico para imprimir.
 
 ## Screenshots
 
@@ -52,5 +52,3 @@ Para obtener los mejores resultados al imprimir:
 ## 📄 Licencia
 
 Este proyecto está licenciado bajo la [Licencia MIT](LICENSE) - consulta el archivo LICENSE para más detalles.
-
----
